@@ -1,0 +1,4 @@
+igra:
+    todo: napravi mapu (randomly generirano za igru?)
+    todo: parkiranje bodovi
+simulacija:
