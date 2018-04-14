@@ -1,4 +1,5 @@
 igra:
-    todo: napravi mapu (randomly generirano za igru?)
-    todo: parkiranje bodovi
+    TODO: windows resize
+    TODO: ui - menu, reset button
+    TODO: direction of car when warking
 simulacija:

@@ -5,6 +5,8 @@ WIDTH = 1360
 HEIGHT = 720
 FPS = 30
 CAPTION = 'Parking Evolution'
+FONT = 'Arial'
+SCORE_TEXT = 'Parking score: '
 
 # RGB of most basic colors
 BLACK = (0  , 0  , 0  )
@@ -17,3 +19,4 @@ BLUE =  (0  , 0  , 255)
 game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, 'assets')
 sound_folder = os.path.join(game_folder, 'sounds')
+
