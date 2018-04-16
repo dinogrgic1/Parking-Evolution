@@ -17,9 +17,9 @@ class Car(pg.sprite.Sprite):
         self.up = self.down = self.right = self.left = 0
         self.position = self.rect.center
 
-        self.MAX_SPEED = 10
+        self.MAX_SPEED = 8
         self.MAX_BACKWARDS_SPEED = 5
-        self.ACCELERATION_POS = 2
+        self.ACCELERATION_POS = 1.8
         self.ACCELERATION_NEG = 1.5
         self.TURN_SPEED = 5
         self.BREAK_SPEED = 0.75
@@ -37,6 +37,7 @@ class Car(pg.sprite.Sprite):
 
         # calculating the direction and rotation
         self.direction += (self.right + self.left)
+
         x, y = self.position
         rad = self.direction * math.pi / 180
 

@@ -11,8 +11,8 @@ class ParkSpace(pg.sprite.Sprite):
         (self.w, self.h) = self.rect.size
 
         # direction of the parking space
-        left = rand.randint(0, 1)
-        if left:
+        self.direction = rand.randint(0, 1)
+        if self.direction:      # self.direction (1- left, 0 - right)
             self.image = pg.transform.rotate(self.image, 180)
 
         # see if the parking space is going to be by top or bottom edge
@@ -24,17 +24,25 @@ class ParkSpace(pg.sprite.Sprite):
         offset = int(conf.WIDTH / 1.5)
         random_offset = rand.randint(0, offset)
         if rand.randint(0, 1):
-            if left:        # top left
+            if self.direction:        # top left
                 self.rect.center = (BORDER_LEFT + (self.w / 2) + random_offset, BORDER_TOP + (self.h / 2))
             else:           # top right
                 self.rect.center = (BORDER_RIGHT - (self.w / 2) - random_offset, BORDER_TOP + (self.h / 2))
         else:
-            if left:        # bottom left
+            if self.direction:        # bottom left
                 self.rect.center = (BORDER_LEFT + (self.w / 2) + conf.WIDTH / 4 + random_offset / 2, BORDER_BOTTOM - (self.h / 2))
             else:           # bottom right
                 self.rect.center = (BORDER_RIGHT - (self.w / 2) - random_offset, BORDER_BOTTOM - (self.h / 2))
 
     def parked(self, car):
+        # see if the car is parked at the right angle (front of the car must face the yellow line)
+        angle = car.direction - (car.direction // 360) * 360
+        if self.direction == 0 and angle >= 0 and angle <= 180:
+            return 0
+        if self.direction == 1 and angle >= 180 and angle <= 360:
+            return 0
+
+        # calculate the percentage of parking success (difference between park.rect and car.rect)
         align_ver = car.rect.top >= self.rect.top and car.rect.bottom <= self.rect.bottom
         align_hor = car.rect.left >= self.rect.left and car.rect.right <= self.rect.right
         if align_ver and align_hor:
